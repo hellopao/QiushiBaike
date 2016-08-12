@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "react": "registry:npm/react#15.0.1+20160601175240"
+  },
+  "globalDependencies": {
+    "qs": "registry:dt/qs#6.2.0+20160707010053",
+    "react-native": "registry:dt/react-native#0.29.0+20160728152643",
+    "react-redux": "registry:dt/react-redux#4.4.0+20160724070751",
+    "redux": "registry:dt/redux#3.5.2+20160703092728",
+    "redux-thunk": "registry:dt/redux-thunk#2.1.0+20160703120921",
+    "whatwg-fetch": "registry:dt/whatwg-fetch#0.0.0+20160728142841"
+  }
+}
