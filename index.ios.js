@@ -3,6 +3,6 @@
 import React, { Component } from 'react';
 import { AppRegistry } from 'react-native';
 
-import App from "./dist/app";
+import App from "./src/app";
 
 AppRegistry.registerComponent('QiushiBaike', () => App);
