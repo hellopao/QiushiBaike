@@ -5,7 +5,6 @@
         "target": "es2015",
         "sourceMap": false,
         "jsx": "react",
-        "outDir": "./dist",
         "allowJs": true
     },
     "exclude": [
