@@ -10,7 +10,11 @@ const article_1 = require("../actions/article");
 const common_1 = require("../assets/styles/common");
 const articleItem_1 = require("../components/articleItem");
 const { width, height } = react_native_1.Dimensions.get('window');
-const styles = react_native_1.StyleSheet.create({});
+const styles = react_native_1.StyleSheet.create({
+    container: {
+        backgroundColor: "#dfdfdf"
+    }
+});
 class ArticleList extends React.Component {
     componentDidMount() {
         this.props.actions.fetchArticleList(this.props.category, 1);
@@ -41,7 +45,7 @@ class ArticleList extends React.Component {
             const dataSource = new react_native_1.ListView.DataSource({
                 rowHasChanged: (r1, r2) => r1 !== r2
             }).cloneWithRows(articles);
-            return (React.createElement(react_native_1.View, {tabLabel: category.text, key: index, style: [common_1.default.container]}, React.createElement(react_native_1.ListView, {style: [], contentContainerStyle: [], initialListSize: 1, dataSource: dataSource, renderRow: article => React.createElement(articleItem_1.default, {article: article, navigator: this.props.navigator}), enableEmptySections: true, onEndReached: () => this.loadMoreArticles(), onEndReachedThreshold: 10, refreshControl: React.createElement(react_native_1.RefreshControl, {refreshing: data.refreshing, onRefresh: () => this.refreshArticleList(), tintColor: "#000", title: "正在刷新糗事...", titleColor: "#000", colors: ['#eee'], progressBackgroundColor: "#fff"})})));
+            return (React.createElement(react_native_1.View, {tabLabel: category.text, key: index, style: [common_1.default.container, styles.container]}, React.createElement(react_native_1.ListView, {style: [], contentContainerStyle: [], initialListSize: 1, dataSource: dataSource, renderRow: article => React.createElement(articleItem_1.default, {article: article, navigator: this.props.navigator}), enableEmptySections: true, onEndReached: () => this.loadMoreArticles(), onEndReachedThreshold: 10, refreshControl: React.createElement(react_native_1.RefreshControl, {refreshing: data.refreshing, onRefresh: () => this.refreshArticleList(), tintColor: "#000", title: "正在刷新糗事...", titleColor: "#000", colors: ['#eee'], progressBackgroundColor: "#fff"})})));
         })));
     }
 }

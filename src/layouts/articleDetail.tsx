@@ -32,7 +32,10 @@ class ArticleDetail extends React.Component<Props, State> {
 
         return (
             <View>
-                <View>
+                <View style={[commonStyles.row]}>
+                    <View>
+                        <Text onPress={() => navigator.pop()}>返回</Text>
+                    </View>
                     <View style={[]}>
                         <Text>糗事{article.id}</Text>
                     </View>

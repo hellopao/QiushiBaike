@@ -23,6 +23,9 @@ import ArticleItem from "../components/articleItem";
 const {width, height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
+    container: {
+        backgroundColor: "#dfdfdf"
+    }
 });
 
 interface Props extends IProps {
@@ -85,7 +88,7 @@ class ArticleList extends React.Component<Props, State> {
                         rowHasChanged: (r1, r2) => r1 !== r2
                     }).cloneWithRows(articles);
                     return (
-                        <View tabLabel={category.text} key={index} style={[commonStyles.container]}>
+                        <View tabLabel={category.text} key={index} style={[commonStyles.container, styles.container]}>
                             <ListView
                                 style={[]}
                                 contentContainerStyle={[]}

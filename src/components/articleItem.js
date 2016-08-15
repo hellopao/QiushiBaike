@@ -8,8 +8,8 @@ const { width, height } = react_native_1.Dimensions.get('window');
 const styles = react_native_1.StyleSheet.create({
     container: {
         padding: 10,
-        borderBottomWidth: 10,
-        borderBottomColor: "#dfdfdf"
+        marginBottom: 10,
+        backgroundColor: "#fff"
     },
     head: {},
     avatar: {
