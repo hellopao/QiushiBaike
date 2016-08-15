@@ -3,6 +3,7 @@
 import * as React from "react";
 import {StyleSheet, Navigator, View, Text} from "react-native";
 import TabNavigator from 'react-native-tab-navigator';
+import * as Icon from 'react-native-vector-icons/FontAwesome';
 
 import ArticleList from "../containers/articleList";
 import Message from "../containers/message";
@@ -34,6 +35,8 @@ class Main extends React.Component<Props, State> {
                 <TabNavigator.Item
                     selected={this.state.currentTab === 'articles'}
                     title="糗事"
+                    renderIcon={() => <Icon name="rocket" size={20} color="#900" />}
+                    renderSelectedIcon={() => <Icon name="rocket" size={20} color="#900"/>}
                     onPress={() => this.switchTab('articles') }>
                     <ArticleList {...this.props} />
                 </TabNavigator.Item>

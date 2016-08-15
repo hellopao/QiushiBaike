@@ -1,15 +1,17 @@
 "use strict";
 
 import * as React from "react";
-import {StyleSheet, Navigator, Dimensions, View, Image, Text} from "react-native";
+import {StyleSheet, Navigator, InteractionManager, Dimensions, View, ListView, Image, Text} from "react-native";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
+import * as Moment from "mini-moment";
 
 import IArticle from "../interfaces/article";
 import IComment from "../interfaces/comment";
 import IProps from "../interfaces/props";
 
 import commonStyles from "../assets/styles/common";
+import * as utils from "../utils/utils";
 
 import ArticleItem from "../components/articleItem";
 
@@ -37,6 +39,27 @@ const styles = StyleSheet.create({
     },
     back: {
         width: 50
+    },
+    item: {
+    },
+    left: {
+        width: 50,
+        height: 50,
+        marginRight: 10
+    },
+    avtar: {
+        width: 36,
+        height: 36, 
+        borderRadius: 18
+    },
+    right: {
+        padding: 5,
+        borderBottomWidth: 1,
+        borderBottomColor: "#ddd"
+
+    },
+    user: {
+
     }
 });
 
@@ -44,15 +67,56 @@ class ArticleDetail extends React.Component<Props, State> {
 
     componentDidMount() {
         const {actions, article} = this.props;
-        actions.fetchCommentList(article.id, 1);
+        InteractionManager.runAfterInteractions(() => {
+            actions.fetchCommentList(article.id, 1);
+        }); 
+    }
+
+    loadMoreComments() {
+
     }
     
+    renderCommentItem(comment: IComment) {
+        return (
+            <View style={[commonStyles.row, styles.item]}>
+                <View style={[commonStyles.center,styles.left]}>
+                    <Image source={{uri: utils.getUserAvatar(comment.user)}} style={[styles.avtar]} />
+                </View>
+                <View style={[commonStyles.item,styles.right]}>
+                    <View style={[styles.user]}>
+                        <Text>{comment.user.login}</Text>
+                    </View>
+                    <View>
+                        <Text>{comment.content}</Text>
+                    </View>
+                    {comment.refer && 
+                    <View>
+                        <View>
+                            <Text>{comment.refer.user.login}</Text>
+                        </View>
+                        <View>
+                            <Text>{comment.refer.content}</Text>
+                        </View>
+                    </View>
+                    }
+                    <View>
+                        <Text>{Moment.fromNow(comment.created_at * 1000)}</Text>
+                    </View>
+                </View>
+            </View>
+        )
+    }
+
     render() {
 
-        const {article, navigator} = this.props;
+        const {article, navigator, comment} = this.props;
+
+        const comments = new ListView.DataSource({
+            rowHasChanged: (r1, r2) => r1 !== r2
+        }).cloneWithRows(comment.list);
 
         return (
-            <View style={[commonStyles.container]}>
+            <View style={[]}>
                 <View style={[commonStyles.row, styles.head]}>
                     <View style={[commonStyles.center, styles.back]}>
                         <Text onPress={() => navigator.pop()}>返回</Text>
@@ -64,14 +128,17 @@ class ArticleDetail extends React.Component<Props, State> {
                 <View>
                     <ArticleItem article={article} navigator={navigator}/>
                 </View>
-                <View>
-                    {this.props.comment.list.map((comment, index) => {
-                        return (
-                            <View key={index}>
-                                <Text>{comment.content}</Text>
-                            </View>
-                        )
-                    })}
+                <View style={[commonStyles.container]}>
+                    <ListView
+                        style={[]}
+                        contentContainerStyle={[]}
+                        initialListSize={1}
+                        dataSource={comments}
+                        renderRow={comment => this.renderCommentItem(comment) }
+                        enableEmptySections={true}
+                        onEndReached={() => this.loadMoreComments() }
+                        onEndReachedThreshold={10}>
+                    </ListView>
                 </View>
             </View>
         )
