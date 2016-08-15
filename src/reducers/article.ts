@@ -21,10 +21,11 @@ export default function (state = {}, action) {
 
     if (action.type === actionTypes.FETCHING_ARTICLE_LIST) {
         const {category, refresh} = action.data;
+        const article = Object.assign({}, state[category.name], {
+            refreshing: refresh
+        });
         return Object.assign({}, state, {
-            [category.name]: {
-                refreshing: refresh
-            }
+            [category.name]: article
         })
     }
     return state;

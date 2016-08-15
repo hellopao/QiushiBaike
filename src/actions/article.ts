@@ -17,13 +17,13 @@ function fetchingArticleList(data) {
     }
 }
 
-export function fetchArticleList(category, page:number, refresh: boolean = false ) {
+export function fetchArticleList(category, page: number, refresh: boolean = false) {
     return dispatch => {
-        dispatch(fetchingArticleList({category,refresh}));
+        dispatch(fetchingArticleList({ category, refresh }));
 
         return getArticleList(category.api, page, refresh)
             .then(res => {
-                dispatch(fetchedArticleList({category, list: res.items, page, refresh}))
+                dispatch(fetchedArticleList({ category, list: res.items, page, refresh }))
             })
     }
 }

@@ -35,7 +35,7 @@ class Main extends React.Component<Props, State> {
                     selected={this.state.currentTab === 'articles'}
                     title="糗事"
                     onPress={() => this.switchTab('articles') }>
-                    <ArticleList />
+                    <ArticleList {...this.props} />
                 </TabNavigator.Item>
                 <TabNavigator.Item
                     selected={this.state.currentTab === 'message'}

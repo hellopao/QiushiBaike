@@ -18,46 +18,11 @@ import * as utils from "../utils/utils";
 import IProps from "../interfaces/props";
 import IArticle from "../interfaces/article";
 
+import ArticleItem from "../components/articleItem";
+
 const {width, height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
-    articleContainer: {
-        padding: 10,
-        borderBottomWidth: 10,
-        borderBottomColor: "#dfdfdf"
-    },
-    articleHead: {
-
-    },
-    avatar: {
-        width: 36,
-        height: 36,
-        borderRadius: 18
-    },
-    author: {
-        fontSize: 12,
-        marginLeft: 10
-    },
-    articleContent: {
-        marginTop: 10,
-        marginBottom: 10
-    },
-    image: {
-        width: width,
-        height: height
-    },
-    articleMeta: {
-
-    },
-    metaItem: {
-        marginRight: 5
-    },
-    metaText: {
-        fontSize: 12
-    },
-    articleOptions: {
-
-    }
 });
 
 interface Props extends IProps {
@@ -96,69 +61,6 @@ class ArticleList extends React.Component<Props, State> {
         }
     }
 
-    renderTextContent(article: IArticle) {
-        return (
-            <View>
-                <Text style={[]}>{article.content}</Text>
-            </View>
-        )
-    }
-
-    renderImageContent(article: IArticle) {
-        return (
-            <View>
-                <Text style={[]}>{article.content}</Text>
-                <Image style={[styles.image, commonStyles.center]} source={{ uri: utils.getArticleImage(article) }}/>
-            </View>
-        )
-    }
-
-    renderVideoContent(article: IArticle) {
-        return (
-            <View>
-                <Text style={[]}>{article.content}</Text>
-                <Image style={[styles.image, commonStyles.center]} source={{ uri: article.pic_url }}/>
-            </View>
-        )
-    }
-
-    renderArticleItem(article: IArticle) {
-        article.user = Object.assign({ login: "匿名用户", icon: "" }, article.user);
-
-        var contentRendererMap = {
-            "word": this.renderTextContent,
-            "image": this.renderImageContent,
-            "video": this.renderVideoContent
-        };
-
-        return (
-            <View style={[styles.articleContainer]}>
-                <View style={[styles.articleHead, commonStyles.row]}>
-                    <Image source={{ uri: utils.getUserAvatar(article.user) }} style={[styles.avatar]} />
-                    <View style={[commonStyles.center]}>
-                        <Text style={[styles.author]}>{article.user.login}</Text>
-                    </View>
-                </View>
-                <View style={[styles.articleContent]}>
-                    {contentRendererMap[article.format](article) }
-                </View>
-                <View style={[styles.articleMeta, commonStyles.row]}>
-                    <View style={[styles.metaItem]}>
-                        <Text style={[styles.metaText]}>好笑{article.votes.up}</Text>
-                    </View>
-                    <View style={[styles.metaItem]}>
-                        <Text style={[styles.metaText]}>评论{article.comments_count}</Text>
-                    </View>
-                    <View style={[styles.metaItem]}>
-                        <Text style={[styles.metaText]}>分享{article.share_count}</Text>
-                    </View>
-                </View>
-                <View style={[styles.articleOptions]}>
-                </View>
-            </View>
-        )
-    }
-
     loadMoreArticles() {
         const {category, article, actions} = this.props;
 
@@ -189,7 +91,7 @@ class ArticleList extends React.Component<Props, State> {
                                 contentContainerStyle={[]}
                                 initialListSize={1}
                                 dataSource={dataSource}
-                                renderRow={article => this.renderArticleItem(article) }
+                                renderRow={article => <ArticleItem article={article} navigator={this.props.navigator}/> }
                                 enableEmptySections={true}
                                 onEndReached={() => this.loadMoreArticles() }
                                 onEndReachedThreshold={10}
@@ -197,11 +99,11 @@ class ArticleList extends React.Component<Props, State> {
                                     <RefreshControl
                                         refreshing={data.refreshing}
                                         onRefresh={() => this.refreshArticleList() }
-                                        tintColor="#ff0000"
-                                        title="Loading..."
-                                        titleColor="#00ff00"
-                                        colors={['#ff0000', '#00ff00', '#0000ff']}
-                                        progressBackgroundColor="#ffff00"
+                                        tintColor="#000"
+                                        title="正在刷新糗事..."
+                                        titleColor="#000"
+                                        colors={['#eee']}
+                                        progressBackgroundColor="#fff"
                                         />
                                 }>
                             </ListView>
