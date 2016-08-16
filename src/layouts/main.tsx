@@ -3,14 +3,15 @@
 import * as React from "react";
 import {StyleSheet, Navigator, View, Text} from "react-native";
 import TabNavigator from 'react-native-tab-navigator';
-import {createIconSet} from 'react-native-vector-icons';
+//import {createIconSet} from 'react-native-vector-icons';
 
 import ArticleList from "../containers/articleList";
 import Message from "../containers/message";
 import Account from "../containers/account";
 
-const glyphMap = require('../assets/iconfonts/QiuBaiIcon.json');
-const Icon = createIconSet(glyphMap, 'QiuBaiIcon');
+// const glyphMap = require('../assets/iconfonts/QiuBaiIcon.json');
+// const Icon = createIconSet(glyphMap, 'QiuBaiIcon');
+import Icon from "../components/icon";
 
 interface Props {
 }
