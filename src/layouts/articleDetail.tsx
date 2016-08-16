@@ -25,6 +25,7 @@ interface Props extends IProps {
     comment: {
         list: IComment[];
         page: number;
+        done: boolean;
     }
 }
 
@@ -34,11 +35,14 @@ interface State {
 const styles = StyleSheet.create({
     head: {
         height: 50,
-        borderBottomWidth: 1, 
+        borderBottomWidth: 1,
         borderBottomColor: "#ccc"
     },
     back: {
         width: 50
+    },
+    title: {
+        marginLeft: -50
     },
     item: {
     },
@@ -49,17 +53,28 @@ const styles = StyleSheet.create({
     },
     avtar: {
         width: 36,
-        height: 36, 
+        height: 36,
         borderRadius: 18
     },
     right: {
         padding: 5,
         borderBottomWidth: 1,
-        borderBottomColor: "#ddd"
+        borderBottomColor: "#ccc"
 
     },
     user: {
 
+    },
+    userText: {
+        color: "#aaa"
+    },
+    refer: {
+        backgroundColor: "#ddd",
+        padding: 5
+    },
+    timeText: {
+        color: "#aaa",
+        fontSize: 12
     }
 });
 
@@ -69,38 +84,41 @@ class ArticleDetail extends React.Component<Props, State> {
         const {actions, article} = this.props;
         InteractionManager.runAfterInteractions(() => {
             actions.fetchCommentList(article.id, 1);
-        }); 
+        });
     }
 
     loadMoreComments() {
-
+        const {actions, article, comment} = this.props;
+        if (comment.page && !comment.done) {
+            actions.fetchCommentList(article.id, comment.page + 1);
+        }
     }
-    
+
     renderCommentItem(comment: IComment) {
         return (
             <View style={[commonStyles.row, styles.item]}>
-                <View style={[commonStyles.center,styles.left]}>
-                    <Image source={{uri: utils.getUserAvatar(comment.user)}} style={[styles.avtar]} />
+                <View style={[commonStyles.center, styles.left]}>
+                    <Image source={{ uri: utils.getUserAvatar(comment.user) }} style={[styles.avtar]} />
                 </View>
-                <View style={[commonStyles.item,styles.right]}>
+                <View style={[commonStyles.item, styles.right]}>
                     <View style={[styles.user]}>
-                        <Text>{comment.user.login}</Text>
+                        <Text style={[styles.userText]}>{comment.user.login}</Text>
                     </View>
-                    <View>
+                    <View style={[commonStyles.mt_10]}>
                         <Text>{comment.content}</Text>
                     </View>
-                    {comment.refer && 
-                    <View>
-                        <View>
-                            <Text>{comment.refer.user.login}</Text>
+                    {comment.refer &&
+                        <View style={[commonStyles.mt_10,styles.refer]}>
+                            <View>
+                                <Text style={[styles.userText]}>{comment.refer.user.login}</Text>
+                            </View>
+                            <View>
+                                <Text>{comment.refer.content}</Text>
+                            </View>
                         </View>
-                        <View>
-                            <Text>{comment.refer.content}</Text>
-                        </View>
-                    </View>
                     }
-                    <View>
-                        <Text>{Moment.fromNow(comment.created_at * 1000)}</Text>
+                    <View style={[commonStyles.mt_10]}>
+                        <Text style={[styles.timeText]}>{Moment.fromNow(comment.created_at * 1000) }</Text>
                     </View>
                 </View>
             </View>
@@ -116,12 +134,12 @@ class ArticleDetail extends React.Component<Props, State> {
         }).cloneWithRows(comment.list);
 
         return (
-            <View style={[]}>
+            <View style={[commonStyles.container]}>
                 <View style={[commonStyles.row, styles.head]}>
                     <View style={[commonStyles.center, styles.back]}>
-                        <Text onPress={() => navigator.pop()}>返回</Text>
+                        <Text onPress={() => navigator.pop() }>返回</Text>
                     </View>
-                    <View style={[commonStyles.center]}>
+                    <View style={[commonStyles.item, commonStyles.center, styles.title]}>
                         <Text>糗事{article.id}</Text>
                     </View>
                 </View>
@@ -153,7 +171,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators({ fetchCommentList}, dispatch)
+        actions: bindActionCreators({ fetchCommentList }, dispatch)
     }
 }
 

@@ -1,5 +1,6 @@
 "use strict";
 const actionTypes = require("../constants/actionTypes");
+const config_1 = require("../constants/config");
 function default_1(state = { list: [] }, action) {
     if (action.type === actionTypes.FETCH_COMMENT_LIST) {
         const { list, page } = action.data;
@@ -7,6 +8,7 @@ function default_1(state = { list: [] }, action) {
         return Object.assign({}, state, {
             list: [...prevList, ...list],
             page: page,
+            done: list.length < config_1.PAGE_COUNT
         });
     }
     return state;

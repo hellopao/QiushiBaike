@@ -80,7 +80,10 @@ class ArticleList extends React.Component<Props, State> {
 
     render() {
         return (
-            <ScrollableTabView onChangeTab={(e) => this.onCategoryChange(e.i) }>
+            <ScrollableTabView 
+                tabBarUnderlineColor="#d1863c"
+                tabBarActiveTextColor="#d1863c"
+                onChangeTab={(e) => this.onCategoryChange(e.i) }>
                 {CATEGORIES.map((category, index) => {
                     const data = this.props.article[category.name] || { list: [], page: 1, refreshing: false };
                     const articles = data.list || [];

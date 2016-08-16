@@ -39,7 +39,7 @@ class ArticleList extends React.Component {
         actions.fetchArticleList(category, 1, true);
     }
     render() {
-        return (React.createElement(ScrollableTabView, {onChangeTab: (e) => this.onCategoryChange(e.i)}, config_1.CATEGORIES.map((category, index) => {
+        return (React.createElement(ScrollableTabView, {tabBarUnderlineColor: "#d1863c", tabBarActiveTextColor: "#d1863c", onChangeTab: (e) => this.onCategoryChange(e.i)}, config_1.CATEGORIES.map((category, index) => {
             const data = this.props.article[category.name] || { list: [], page: 1, refreshing: false };
             const articles = data.list || [];
             const dataSource = new react_native_1.ListView.DataSource({
