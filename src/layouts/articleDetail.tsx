@@ -39,7 +39,8 @@ const styles = StyleSheet.create({
         borderBottomColor: "#ccc"
     },
     back: {
-        width: 50
+        width: 50,
+        zIndex: 2
     },
     title: {
         marginLeft: -50

@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -140,7 +141,7 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = QiushiBaike/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = QiushiBaike/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
-		21642CBF1D61C438009B32C0 /* QiuBaiIcon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = QiuBaiIcon.ttf; path = ../android/app/src/main/assets/fonts/QiuBaiIcon.ttf; sourceTree = "<group>"; };
+		21642CD61D630983009B32C0 /* QiuBaiIcon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = QiuBaiIcon.ttf; path = ../android/app/src/main/assets/fonts/QiuBaiIcon.ttf; sourceTree = "<group>"; };
 		4E406FC2CBBA44FE93A7809B /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		5FAC67799A964DF3B844E8CB /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		6DE366E576D548D9BA44D8ED /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
@@ -355,7 +356,7 @@
 				5FAC67799A964DF3B844E8CB /* MaterialIcons.ttf */,
 				E22D74B43CDB4F4DB9A3ECD4 /* Octicons.ttf */,
 				4E406FC2CBBA44FE93A7809B /* Zocial.ttf */,
-				21642CBF1D61C438009B32C0 /* QiuBaiIcon.ttf */,
+				21642CD61D630983009B32C0 /* QiuBaiIcon.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";

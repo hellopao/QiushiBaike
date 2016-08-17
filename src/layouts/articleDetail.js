@@ -15,7 +15,8 @@ const styles = react_native_1.StyleSheet.create({
         borderBottomColor: "#ccc"
     },
     back: {
-        width: 50
+        width: 50,
+        zIndex: 2
     },
     title: {
         marginLeft: -50
