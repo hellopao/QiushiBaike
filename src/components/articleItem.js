@@ -57,7 +57,7 @@ class ArticleItem extends React.Component {
     }
     onArticleUserClick() {
         const { navigator, article } = this.props;
-        if (!article.user)
+        if (!article.user || !article.user.icon)
             return;
         navigator.push({
             name: "User",
