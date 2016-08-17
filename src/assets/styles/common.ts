@@ -7,6 +7,12 @@ const styles = StyleSheet.create({
     item: {flex: 1},
     row: {flexDirection: "row"},
     center: {justifyContent: "center", alignItems: "center"},
+    horizonCenter: {
+        alignItems: "center"
+    },
+    verticalCenter: {
+        justifyContent: "center"
+    },
     m_10: {
         margin: 10
     },

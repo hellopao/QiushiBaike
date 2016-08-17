@@ -3,7 +3,7 @@ const qs = require("qs");
 const http = require("../utils/request");
 const config = require("../constants/config");
 function getArticleList(api, page, refresh) {
-    var query = { page: page, count: config.PAGE_COUNT };
+    var query = { page: page, count: config.ARTICLE_PAGE_COUNT };
     if (refresh) {
         query['type'] = "refresh";
     }

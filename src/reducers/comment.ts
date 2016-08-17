@@ -1,7 +1,7 @@
 "use strict";
 
 import * as actionTypes from "../constants/actionTypes";
-import {PAGE_COUNT} from "../constants/config";
+import {COMMENT_PAGE_COUNT} from "../constants/config";
 
 export default function (state = {list: []}, action) {
     if (action.type === actionTypes.FETCH_COMMENT_LIST) {
@@ -11,7 +11,15 @@ export default function (state = {list: []}, action) {
         return Object.assign({}, state, {
             list: [...prevList, ...list],
             page,
-            done: list.length < PAGE_COUNT
+            done: list.length < COMMENT_PAGE_COUNT
+        })
+    }
+
+    if (action.type === actionTypes.RESET_COMMENT_LIST) {
+        return Object.assign({}, state, {
+            list: [],
+            page: 0,
+            done: false
         })
     }
 

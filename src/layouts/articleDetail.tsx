@@ -15,12 +15,13 @@ import * as utils from "../utils/utils";
 
 import ArticleItem from "../components/articleItem";
 
-import {fetchCommentList} from "../actions/comment";
+import {fetchCommentList, resetCommentList} from "../actions/comment";
 
 interface Props extends IProps {
     article: IArticle;
     actions?: {
         fetchCommentList: (articleId: number, page: number) => any;
+        resetCommentList: () => any;
     };
     comment: {
         list: IComment[];
@@ -83,6 +84,8 @@ class ArticleDetail extends React.Component<Props, State> {
 
     componentDidMount() {
         const {actions, article} = this.props;
+        actions.resetCommentList();
+
         InteractionManager.runAfterInteractions(() => {
             actions.fetchCommentList(article.id, 1);
         });
@@ -175,7 +178,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators({ fetchCommentList }, dispatch)
+        actions: bindActionCreators({ fetchCommentList, resetCommentList }, dispatch)
     }
 }
 

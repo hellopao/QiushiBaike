@@ -8,7 +8,14 @@ function default_1(state = { list: [] }, action) {
         return Object.assign({}, state, {
             list: [...prevList, ...list],
             page: page,
-            done: list.length < config_1.PAGE_COUNT
+            done: list.length < config_1.COMMENT_PAGE_COUNT
+        });
+    }
+    if (action.type === actionTypes.RESET_COMMENT_LIST) {
+        return Object.assign({}, state, {
+            list: [],
+            page: 0,
+            done: false
         });
     }
     return state;

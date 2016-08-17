@@ -11,6 +11,7 @@ import IProps from "../interfaces/props";
 import IArticle from "../interfaces/article";
 
 import ArticleDetail from "../layouts/articleDetail";
+import User from "../layouts/user";
 
 const {width, height} = Dimensions.get('window');
 
@@ -66,14 +67,31 @@ class ArticleItem extends React.Component<Props, State> {
     onArticleContentClick() {
         const {navigator, article} = this.props;
 
-        if (navigator.name === "ArticleDetail") {
+        const routes = navigator.getCurrentRoutes();
+        const currentRoute = routes[routes.length - 1];
+        if (currentRoute['name'] === "ArticleDetail") {
             return;
         }
+
         navigator.push({
             name: "ArticleDetail", 
             component: ArticleDetail, 
             props: {
                 article
+            }
+        })
+    }
+
+    onArticleUserClick() {
+        const {navigator, article} = this.props;
+
+        if (!article.user) return;
+
+        navigator.push({
+            name: "User", 
+            component: User, 
+            props: {
+                rawUser: article.user
             }
         })
     }
@@ -117,11 +135,13 @@ class ArticleItem extends React.Component<Props, State> {
 
         return (
             <View style={[styles.container]}>
-                <View style={[styles.head, commonStyles.row]}>
-                    <Image source={{ uri: utils.getUserAvatar(article.user) }} style={[styles.avatar]} />
-                    <View style={[commonStyles.center]}>
-                        <Text style={[styles.author]}>{article.user.login}</Text>
-                    </View>
+                <View style={[styles.head]}>
+                    <TouchableOpacity style={[commonStyles.row]} onPress={() => this.onArticleUserClick()}>
+                        <Image source={{ uri: utils.getUserAvatar(article.user) }} style={[styles.avatar]} />
+                        <View style={[commonStyles.center]}>
+                            <Text style={[styles.author]}>{article.user.login}</Text>
+                        </View>
+                    </TouchableOpacity>
                 </View>
                 <TouchableOpacity onPress={() => this.onArticleContentClick()}>
                     <View style={[styles.content]}>

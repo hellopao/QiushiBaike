@@ -22,3 +22,9 @@ function fetchCommentList(articleId, page) {
     };
 }
 exports.fetchCommentList = fetchCommentList;
+function resetCommentList() {
+    return {
+        type: actionTypes.RESET_COMMENT_LIST
+    };
+}
+exports.resetCommentList = resetCommentList;

@@ -2,7 +2,9 @@
 exports.WWW_SITE = "http://www.qiushibaike.com";
 exports.API_SITE = "http://m2.qiushibaike.com";
 exports.IMAGE_SITE = "http://pic.qiushibaike.com";
-exports.PAGE_COUNT = 30;
+exports.USER_SITE = "http://nearby.qiushibaike.com";
+exports.ARTICLE_PAGE_COUNT = 30;
+exports.COMMENT_PAGE_COUNT = 50;
 exports.CATEGORIES = [
     {
         name: "exclusive",
@@ -30,3 +32,9 @@ exports.CATEGORIES = [
         api: "/article/history"
     }
 ];
+exports.USER_EMOTION_MAP = {
+    "married": "已婚",
+    "inlove": "恋爱中",
+    "single": "单身",
+    "secret": "保密"
+};

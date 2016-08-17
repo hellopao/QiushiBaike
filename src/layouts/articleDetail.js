@@ -53,6 +53,7 @@ const styles = react_native_1.StyleSheet.create({
 class ArticleDetail extends React.Component {
     componentDidMount() {
         const { actions, article } = this.props;
+        actions.resetCommentList();
         react_native_1.InteractionManager.runAfterInteractions(() => {
             actions.fetchCommentList(article.id, 1);
         });
@@ -82,7 +83,7 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
     return {
-        actions: redux_1.bindActionCreators({ fetchCommentList: comment_1.fetchCommentList }, dispatch)
+        actions: redux_1.bindActionCreators({ fetchCommentList: comment_1.fetchCommentList, resetCommentList: comment_1.resetCommentList }, dispatch)
     };
 }
 Object.defineProperty(exports, "__esModule", { value: true });

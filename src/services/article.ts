@@ -7,7 +7,7 @@ import * as http from "../utils/request";
 import * as config from "../constants/config";
 
 export function getArticleList(api: string, page: number, refresh) {
-    var query = {page, count: config.PAGE_COUNT};
+    var query = {page, count: config.ARTICLE_PAGE_COUNT};
     if (refresh) {
         query['type'] = "refresh";
     }

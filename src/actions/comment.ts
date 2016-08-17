@@ -26,3 +26,9 @@ export function fetchCommentList(articleId: number, page: number) {
             })
     }
 }
+
+export function resetCommentList() {
+    return {
+        type: actionTypes.RESET_COMMENT_LIST
+    }
+}

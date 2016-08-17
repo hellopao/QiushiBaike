@@ -6,7 +6,11 @@ export const API_SITE = "http://m2.qiushibaike.com";
 
 export const IMAGE_SITE = "http://pic.qiushibaike.com";
 
-export const PAGE_COUNT = 30;
+export const USER_SITE = "http://nearby.qiushibaike.com";
+
+export const ARTICLE_PAGE_COUNT = 30;
+
+export const COMMENT_PAGE_COUNT = 50;
 
 export const CATEGORIES = [
     {
@@ -35,3 +39,10 @@ export const CATEGORIES = [
         api: "/article/history"
     }
 ];
+
+export const USER_EMOTION_MAP = {
+    "married": "已婚",
+    "inlove": "恋爱中",
+    "single": "单身",
+    "secret": "保密"
+};
