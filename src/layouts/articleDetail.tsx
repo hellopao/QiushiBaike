@@ -1,7 +1,7 @@
 "use strict";
 
 import * as React from "react";
-import {StyleSheet, Navigator, InteractionManager, Dimensions, View, ListView, Image, Text} from "react-native";
+import {StyleSheet, Navigator, InteractionManager, Dimensions, TouchableOpacity, View, ListView, Image, Text} from "react-native";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import * as Moment from "mini-moment";
@@ -101,8 +101,13 @@ class ArticleDetail extends React.Component<Props, State> {
                     <Image source={{ uri: utils.getUserAvatar(comment.user) }} style={[styles.avtar]} />
                 </View>
                 <View style={[commonStyles.item, styles.right]}>
-                    <View style={[styles.user]}>
-                        <Text style={[styles.userText]}>{comment.user.login}</Text>
+                    <View style={[commonStyles.row]}>
+                        <View style={[commonStyles.mr_10]}>
+                            <Text style={[]}>{comment.floor}楼</Text>
+                        </View>
+                        <View style={[styles.user]}>
+                            <Text style={[styles.userText]}>{comment.user.login}</Text>
+                        </View>
                     </View>
                     <View style={[commonStyles.mt_10]}>
                         <Text>{comment.content}</Text>
@@ -136,15 +141,12 @@ class ArticleDetail extends React.Component<Props, State> {
         return (
             <View style={[commonStyles.container]}>
                 <View style={[commonStyles.row, styles.head]}>
-                    <View style={[commonStyles.center, styles.back]}>
-                        <Text onPress={() => navigator.pop() }>返回</Text>
-                    </View>
+                    <TouchableOpacity onPress={() => navigator.pop() } style={[commonStyles.center, styles.back]}>
+                        <Text>返回</Text>
+                    </TouchableOpacity>
                     <View style={[commonStyles.item, commonStyles.center, styles.title]}>
                         <Text>糗事{article.id}</Text>
                     </View>
-                </View>
-                <View>
-                    <ArticleItem article={article} navigator={navigator}/>
                 </View>
                 <View style={[commonStyles.container]}>
                     <ListView
@@ -152,7 +154,8 @@ class ArticleDetail extends React.Component<Props, State> {
                         contentContainerStyle={[]}
                         initialListSize={1}
                         dataSource={comments}
-                        renderRow={comment => this.renderCommentItem(comment) }
+                        renderHeader={()=> <ArticleItem article={article} navigator={navigator}/>}
+                        renderRow={this.renderCommentItem.bind(this)} 
                         enableEmptySections={true}
                         onEndReached={() => this.loadMoreComments() }
                         onEndReachedThreshold={10}>

@@ -13,6 +13,12 @@ const styles = StyleSheet.create({
     mt_10: {
         marginTop: 10
     },
+    ml_10: {
+        marginLeft: 10
+    },
+    mr_10: {
+        marginRight: 10
+    },
     p_10: {
         padding: 10
     }
